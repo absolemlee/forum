@@ -315,3 +315,20 @@ RAPID_API_KEY=<YOUR_RAPID_API_KEY>
 ## 📚 References
 
 JSMastery. (2023). [Ultimate Next.js 14 Course | Become a top 1% Next.js 14 developer](https://www.jsmastery.pro/ultimate-next-course). E-Learning.
+
+## 🎨 Branding
+
+The design system now uses semantic tokens as the single source of truth for brand styling.
+
+- **Tailwind tokens** are configured in `tailwind.config.ts` under `theme.extend`:
+  - `colors.brand`, `colors.surface`, `colors.text`
+  - `fontFamily.sans`, `fontFamily.heading`
+  - `spacing` (`xs` → `xl`)
+  - `borderRadius` (`sm` → `xl`)
+- **CSS variables** live in `app/globals.css` with light-mode defaults in `:root` and dark-mode overrides in `.dark`.
+- **Usage guidance**:
+  - Use `bg-surface`, `bg-surface-muted`, `border-surface-border` for backgrounds and separators.
+  - Use `text-text` and `text-text-muted` for foreground text.
+  - Keep `brand` usage for primary accents and CTA treatments.
+
+Avoid introducing new hardcoded hex color utility classes in shared components; prefer semantic tokens so branding can be updated centrally.
