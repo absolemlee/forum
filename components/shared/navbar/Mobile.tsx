@@ -30,7 +30,7 @@ const NavContent = () => {
               className={`${
                 isActive
                   ? "primary-gradient rounded-lg text-light-900"
-                  : "text-dark300_light900"
+                  : "text-text"
               } flex items-center justify-start gap-4 bg-transparent p-4`}
             >
               <Image
@@ -65,7 +65,7 @@ const Mobile = () => {
       </SheetTrigger>
       <SheetContent
         side="left"
-        className="background-light900_dark200 border-none"
+        className="bg-surface border-none"
       >
         <Link href="/" className="flex items-center gap-1">
           <Image
@@ -75,7 +75,7 @@ const Mobile = () => {
             alt="Forum"
           />
 
-          <p className="h2-bold text-dark100_light900 font-spaceGrotesk">
+          <p className="h2-bold text-text font-spaceGrotesk">
             Forum
           </p>
         </Link>
@@ -96,7 +96,7 @@ const Mobile = () => {
 
               <SheetClose asChild>
                 <Link href="/sign-up">
-                  <Button className="small-medium light-border-2 btn-tertiary text-dark400_light900 min-h-[41px] w-full rounded-lg border px-4 py-3 shadow-none">
+                  <Button className="small-medium border-surface-border btn-tertiary text-text min-h-[41px] w-full rounded-lg border px-4 py-3 shadow-none">
                     Sign Up
                   </Button>
                 </Link>
