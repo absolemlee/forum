@@ -239,7 +239,7 @@ In order to install and run this project locally, you would need to have the fol
 > - the application uses OpenAI API, therefore, you need to create OpenAI account [here](https://openai.com/) and sets the `OPENAI_API_KEY` environment variable in `.env` file.
 > - the application uses RapidAPI, therefore, you need to create RapidAPI account [here](https://rapidapi.com/), subscribe to the [JSearch API](https://rapidapi.com/letscrape-6bRBa3QguO5/api/jsearch/) and sets the `RAPIDAPI_API_KEY` environment variable in `.env` file.
 
-After following all the instructions above, we'll want to create a new webhook on Clerk. To do this, go to the [Clerk Dashboard](https://dashboard.clerk.dev/), click on the "Webhooks" tab, and then click "Add Endpoint". For the Endpoint URL, enter `http://<PASTE-YOUR-LINK-HERE>/api/webhook/clerk`. For the events, select the "user". Then click "Create" to create the webhook. get the signing secret and set it as `CLERK_WEBHOOK_SECRET` environment variable in `.env` file.
+After following all the instructions above, we'll want to create a new webhook on Clerk. To do this, go to the [Clerk Dashboard](https://dashboard.clerk.dev/), click on the "Webhooks" tab, and then click "Add Endpoint". For the Endpoint URL, enter `http://<PASTE-YOUR-LINK-HERE>/api/clerk`. For the events, select the "user". Then click "Create" to create the webhook, get the signing secret, and set it as `NEXT_CLERK_WEBHOOK_SECRET` environment variable in `.env` file.
 
 **Step 1:**
 
@@ -294,7 +294,7 @@ Create a `.env` file in the root directory of the project and add the following 
 ```env
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=<CLERK_PUBLISHABLE_KEY>
 CLERK_SECRET_KEY=<CLERK_SECRET_KEY>
-NEXT_CLERK_WEBHOOK_SECRET=<CLERK_WEBHOOK_SECRET>
+NEXT_CLERK_WEBHOOK_SECRET=<YOUR_NEXT_CLERK_WEBHOOK_SECRET>
 
 NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
 NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
