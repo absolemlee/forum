@@ -233,13 +233,13 @@ In order to install and run this project locally, you would need to have the fol
 **Step 0:**
 
 > [!IMPORTANT]
-> - the application uses Clerk for Authentication and User Management, therefore, you need to create Clerk account [here](https://clerk.dev/) and sets the `CLERK_PUBLISHABLE_KEY` and `CLERK_SECRET_KEY` environment variables in `.env` file. Also, the different URLs for the Clerk sign-in, sign-up, after sign-in and after sign-up pages.
-> - the application uses a MongoDB database, therefore, you need to create a database and connect it to the application, for this, change the `MONGODB_URL` environment variable in `.env` file located in `server` folder.
+> - the application uses Clerk for Authentication and User Management, therefore, you need to create Clerk account [here](https://clerk.dev/) and sets the `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` and `CLERK_SECRET_KEY` environment variables in `.env` file. Also, the different URLs for the Clerk sign-in, sign-up, after sign-in and after sign-up pages.
+> - the application uses a MongoDB database, therefore, you need to create a database and connect it to the application, for this, change the `MONGODB_URL` environment variable in the root `.env` file.
 > - the application uses TinyMCE, therefore, you need to create TinyMCE account [here](https://www.tiny.cloud/) and set the `NEXT_PUBLIC_TINY_EDITOR_API_KEY` environment variable in `.env` file.
-> - the application uses OpenAI API, therefore, you need to create OpenAI account [here](https://openai.com/) and sets the `OPENAI_API_KEY` environment variable in `.env` file.
-> - the application uses RapidAPI, therefore, you need to create RapidAPI account [here](https://rapidapi.com/), subscribe to the [JSearch API](https://rapidapi.com/letscrape-6bRBa3QguO5/api/jsearch/) and sets the `RAPIDAPI_API_KEY` environment variable in `.env` file.
+> - the application uses OpenAI API, therefore, you need to create OpenAI account [here](https://openai.com/) and set the `OPENAI_API_KEY` environment variable in `.env` file.
+> - the application uses RapidAPI, therefore, you need to create RapidAPI account [here](https://rapidapi.com/), subscribe to the [JSearch API](https://rapidapi.com/letscrape-6bRBa3QguO5/api/jsearch/) and set the `RAPIDAPI_API_KEY` environment variable in `.env` file.
 
-After following all the instructions above, we'll want to create a new webhook on Clerk. To do this, go to the [Clerk Dashboard](https://dashboard.clerk.dev/), click on the "Webhooks" tab, and then click "Add Endpoint". For the Endpoint URL, enter `http://<PASTE-YOUR-LINK-HERE>/api/clerk`. For the events, select the "user". Then click "Create" to create the webhook, get the signing secret, and set it as `NEXT_CLERK_WEBHOOK_SECRET` environment variable in `.env` file.
+After following all the instructions above, we'll want to create a new webhook on Clerk. To do this, go to the [Clerk Dashboard](https://dashboard.clerk.dev/), click on the "Webhooks" tab, and then click "Add Endpoint". For the Endpoint URL, enter `http://<PASTE-YOUR-LINK-HERE>/api/clerk` (the app route implemented in `app/api/clerk/route.ts`). For the events, select the "user". Then click "Create" to create the webhook, get the signing secret, and set it as `NEXT_CLERK_WEBHOOK_SECRET` environment variable in `.env` file.
 
 **Step 1:**
 
@@ -289,31 +289,51 @@ Environment variables[^12] can be used for configuration. They must be set befor
 
 **Forum** uses [Clerk](https://clerk.com), [TinyMCE](https://uploadthing.com/), [RapidAPI](https://rapidapi.com), [OpenAI API](https://openai.com/blog/openai-api) and [MongoDB](https://mongodb.com) as external services. You need to create an account on each of these services and get the required credentials to run the app.
 
-Create a `.env` file in the root directory of the project and add the following environment variables:
+Create a `.env` file in the root directory of the project.
+
+### Required variables
+
+Copy this block exactly from `.env.example`:
 
 ```env
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=<CLERK_PUBLISHABLE_KEY>
-CLERK_SECRET_KEY=<CLERK_SECRET_KEY>
-NEXT_CLERK_WEBHOOK_SECRET=<YOUR_NEXT_CLERK_WEBHOOK_SECRET>
+# Clerk
 
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+CLERK_SECRET_KEY=
+NEXT_CLERK_WEBHOOK_SECRET=
 NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
 NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
 NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/
 NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/onboarding
 
-NEXT_PUBLIC_TINY_EDITOR_API_KEY=<YOUR_TINY_MCE_API_KEY>
+# DB
+MONGODB_URL=
 
-MONGODB_URL=<YOUR_MONGODB_URL>
+# TinyMCE
+NEXT_PUBLIC_TINY_EDITOR_API_KEY=
 
-NEXT_PUBLIC_SERVER_URL=<YOUR_SERVER_URL>
 
-OPENAI_API_KEY=<YOUR_OPENAI_API_KEY>
+# OpenAI
+OPENAI_API_KEY=
 
-RAPIDAPI_API_KEY=<YOUR_RAPID_API_KEY>
+# App URL
+NEXT_PUBLIC_SERVER_URL=https://hogardelcoqui.com
+
+# RapidAPI (recommended canonical)
+RAPIDAPI_API_KEY=
 ```
 
 > [!NOTE]
 > `NEXT_PUBLIC_TINY_EDITOR_API_KEY` is intentionally prefixed with `NEXT_PUBLIC_`, so it is client-exposed and available in browser-rendered TinyMCE components.
+
+
+## ✅ Verification checklist
+
+- **Clerk**: Create/sign in a user and confirm webhook delivery succeeds to `POST /api/clerk` in the Clerk Dashboard logs.
+- **MongoDB**: After sign-up, verify the user document exists in your `users` collection.
+- **TinyMCE**: Open **Ask Question** and confirm the editor loads without API-key errors.
+- **OpenAI**: Trigger AI answer generation and verify the request to `POST /api/openai` returns successfully.
+- **RapidAPI**: Open **Jobs** and verify job results are returned from `POST /api/rapidapi`.
 
 ## 📚 References
 
