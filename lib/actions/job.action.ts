@@ -36,7 +36,9 @@ export const fetchCountries = async (): Promise<Country[]> => {
           "common" in item.name &&
           typeof item.name.common === "string"
         ) {
-          return { name: { common: item.name.common } };
+          if ("cca2" in item && typeof item.cca2 === "string") {
+            return { name: { common: item.name.common }, cca2: item.cca2 };
+          }
         }
 
         return null;
@@ -49,7 +51,7 @@ export const fetchCountries = async (): Promise<Country[]> => {
 };
 
 export const fetchJobs = async (filters: JobFilterParams) => {
-  const { query, page } = filters;
+  const { query, page, filter } = filters;
 
   const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL ?? "http://localhost:3000"}/api/rapidapi`, {
     method: "POST",
@@ -60,6 +62,7 @@ export const fetchJobs = async (filters: JobFilterParams) => {
       searchQuery: query,
       page,
       pageSize: 1,
+      filter,
     }),
   });
 

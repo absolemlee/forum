@@ -185,6 +185,7 @@ export interface RecommendedParams
 export interface JobFilterParams {
   query: string;
   page: string;
+  filter?: string;
 }
 
 export interface GetFormattedSalaryParams {

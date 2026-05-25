@@ -64,8 +64,8 @@ const JobsFilter = ({ countriesList }: JobsFilterProps) => {
             {safeCountries.length > 0 ? (
               safeCountries.map((country: Country) => (
                 <SelectItem
-                  key={country.name?.common ?? "Unknown country"}
-                  value={country.name?.common ?? "Unknown country"}
+                  key={country.cca2 ?? country.name?.common ?? "Unknown country"}
+                  value={country.cca2 ?? ""}
                   className="px-4 py-3"
                 >
                   {country.name?.common ?? "Unknown country"}

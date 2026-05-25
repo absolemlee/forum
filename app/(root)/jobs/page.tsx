@@ -23,14 +23,13 @@ interface Props {
 const Page = async ({ searchParams }: Props) => {
   const userLocation = await fetchLocation();
 
-  const searchQuery = [searchParams?.q, searchParams?.location]
-    .filter(Boolean)
-    .join(", ")
-    .trim();
+  const searchQuery = (searchParams?.q ?? "").trim();
+  const locationFilter = (searchParams?.location ?? "").trim().toLowerCase();
 
   const jobsResponse = await fetchJobs({
     query: searchQuery || `Software Engineer in ${userLocation}`,
     page: searchParams?.page ?? "1",
+    filter: locationFilter || undefined,
   });
 
   const jobs = Array.isArray(jobsResponse) ? jobsResponse : [];
