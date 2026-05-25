@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 const config = {
-  apiKey: process.env.NEXT_PUBLIC_RAPID_API_KEY as string,
+  apiKey: process.env.RAPIDAPI_API_KEY as string,
   apiHost: "https://jsearch.p.rapidapi.com",
 };
 
