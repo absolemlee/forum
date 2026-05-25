@@ -19,19 +19,19 @@ export const fetchCountries = async () => {
 export const fetchJobs = async (filters: JobFilterParams) => {
   const { query, page } = filters;
 
-  const headers = {
-    "X-RapidAPI-Key": process.env.NEXT_PUBLIC_RAPID_API_KEY ?? "",
-    "X-RapidAPI-Host": "jsearch.p.rapidapi.com",
-  };
-
-  const response = await fetch(
-    `https://jsearch.p.rapidapi.com/search?query=${query}&page=${page}`,
-    {
-      headers,
-    }
-  );
+  const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL ?? "http://localhost:3000"}/api/rapidapi`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      searchQuery: query,
+      page,
+      pageSize: 1,
+    }),
+  });
 
   const result = await response.json();
 
-  return result.data;
+  return result.result;
 };
