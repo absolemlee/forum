@@ -13,25 +13,30 @@ export const metadata: Metadata = {
   title: "Jobs - Forum",
 };
 interface Props {
-  searchParams: {
-    q: string;
-    location: string;
-    page: string;
+  searchParams?: {
+    q?: string;
+    location?: string;
+    page?: string;
   };
 }
 
 const Page = async ({ searchParams }: Props) => {
   const userLocation = await fetchLocation();
 
-  const jobs = await fetchJobs({
-    query:
-      `${searchParams.q}, ${searchParams.location}` ??
-      `Software Engineer in ${userLocation}`,
-    page: searchParams.page ?? 1,
+  const searchQuery = [searchParams?.q, searchParams?.location]
+    .filter(Boolean)
+    .join(", ")
+    .trim();
+
+  const jobsResponse = await fetchJobs({
+    query: searchQuery || `Software Engineer in ${userLocation}`,
+    page: searchParams?.page ?? "1",
   });
 
+  const jobs = Array.isArray(jobsResponse) ? jobsResponse : [];
+
   const countries = await fetchCountries();
-  const page = parseInt(searchParams.page ?? 1);
+  const page = parseInt(searchParams?.page ?? "1", 10);
 
   return (
     <>
