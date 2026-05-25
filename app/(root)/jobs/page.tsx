@@ -36,6 +36,7 @@ const Page = async ({ searchParams }: Props) => {
   const jobs = Array.isArray(jobsResponse) ? jobsResponse : [];
 
   const countries = await fetchCountries();
+  const safeCountries = Array.isArray(countries) ? countries : [];
   const page = parseInt(searchParams?.page ?? "1", 10);
 
   return (
@@ -43,7 +44,7 @@ const Page = async ({ searchParams }: Props) => {
       <h1 className="h1-bold text-dark100_light900">Jobs</h1>
 
       <div className="flex">
-        <JobsFilter countriesList={countries} />
+        <JobsFilter countriesList={safeCountries} />
       </div>
 
       <section className="light-border mb-9 mt-11 flex flex-col gap-9 border-b pb-9">
