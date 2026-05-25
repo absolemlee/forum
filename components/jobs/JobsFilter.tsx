@@ -20,6 +20,8 @@ interface JobsFilterProps {
 }
 
 const JobsFilter = ({ countriesList }: JobsFilterProps) => {
+  const safeCountries = Array.isArray(countriesList) ? countriesList : [];
+
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -59,14 +61,14 @@ const JobsFilter = ({ countriesList }: JobsFilterProps) => {
 
         <SelectContent className="body-semibold max-h-[350px] max-w-[250px]">
           <SelectGroup>
-            {countriesList ? (
-              countriesList.map((country: Country) => (
+            {safeCountries.length > 0 ? (
+              safeCountries.map((country: Country) => (
                 <SelectItem
-                  key={country.name.common}
-                  value={country.name.common}
+                  key={country.name?.common ?? "Unknown country"}
+                  value={country.name?.common ?? "Unknown country"}
                   className="px-4 py-3"
                 >
-                  {country.name.common}
+                  {country.name?.common ?? "Unknown country"}
                 </SelectItem>
               ))
             ) : (
