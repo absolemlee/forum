@@ -235,7 +235,7 @@ In order to install and run this project locally, you would need to have the fol
 > [!IMPORTANT]
 > - the application uses Clerk for Authentication and User Management, therefore, you need to create Clerk account [here](https://clerk.dev/) and sets the `CLERK_PUBLISHABLE_KEY` and `CLERK_SECRET_KEY` environment variables in `.env` file. Also, the different URLs for the Clerk sign-in, sign-up, after sign-in and after sign-up pages.
 > - the application uses a MongoDB database, therefore, you need to create a database and connect it to the application, for this, change the `MONGODB_URL` environment variable in `.env` file located in `server` folder.
-> - the application uses TinyMCE, therefore, you need to create TinyMCE account [here](https://www.tiny.cloud/) and sets the `NEXT_PUBLIC_TINYMCE_API_KEY` environment variable in `.env` file.
+> - the application uses TinyMCE, therefore, you need to create TinyMCE account [here](https://www.tiny.cloud/) and set the `NEXT_PUBLIC_TINY_EDITOR_API_KEY` environment variable in `.env` file.
 > - the application uses OpenAI API, therefore, you need to create OpenAI account [here](https://openai.com/) and sets the `OPENAI_API_KEY` environment variable in `.env` file.
 > - the application uses RapidAPI, therefore, you need to create RapidAPI account [here](https://rapidapi.com/), subscribe to the [JSearch API](https://rapidapi.com/letscrape-6bRBa3QguO5/api/jsearch/) and sets the `RAPIDAPI_API_KEY` environment variable in `.env` file.
 
@@ -301,7 +301,7 @@ NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
 NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/
 NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/onboarding
 
-NEXT_PUBLIC_TINY_MCE_API_KEY=<YOUR_TINY_MCE_API_KEY>
+NEXT_PUBLIC_TINY_EDITOR_API_KEY=<YOUR_TINY_MCE_API_KEY>
 
 MONGODB_URL=<YOUR_MONGODB_URL>
 
@@ -311,6 +311,9 @@ OPENAI_API_KEY=<YOUR_OPENAI_API_KEY>
 
 RAPID_API_KEY=<YOUR_RAPID_API_KEY>
 ```
+
+> [!NOTE]
+> `NEXT_PUBLIC_TINY_EDITOR_API_KEY` is intentionally prefixed with `NEXT_PUBLIC_`, so it is client-exposed and available in browser-rendered TinyMCE components.
 
 ## 📚 References
 
