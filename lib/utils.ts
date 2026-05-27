@@ -1,9 +1,7 @@
 import { BADGE_CRITERIA, CURRENCY_NOTATIONS } from "@/constants";
-import { JobPageFilters } from "@/constants/filters";
 import type {
   BadgeCounts,
   BadgeParams,
-  FilterProps,
   RemoveUrlQueryParams,
   UrlQueryParams,
 } from "@/types";
@@ -117,16 +115,15 @@ export const assignBadges = (params: BadgeParams): BadgeCounts => {
   return badgeCounts;
 };
 
+const EMPLOYMENT_TYPE_LABELS: Record<string, string> = {
+  fulltime: "Full-time",
+  parttime: "Part-time",
+  contractor: "Contractor",
+  intern: "Internship",
+};
+
 export const employmentTypeConverter = (type: string): string => {
-  let employmentType: string = "";
-
-  JobPageFilters.forEach((filter: FilterProps) => {
-    if (filter.value === type) {
-      employmentType = filter.name;
-    }
-  });
-
-  return employmentType;
+  return EMPLOYMENT_TYPE_LABELS[type] || "";
 };
 
 export const getFormattedSalary = ({
