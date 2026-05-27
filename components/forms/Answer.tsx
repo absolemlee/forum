@@ -59,7 +59,7 @@ const Answer = ({
         await editAnswer({
           answerId: parsedAnswerData._id,
           content: values.answer,
-          path: `/question/${JSON.parse(questionId)}#${parsedAnswerData._id}}`,
+          path: `/question/${JSON.parse(questionId)}#${parsedAnswerData._id}`,
         });
       } else {
         await createAnswer({
