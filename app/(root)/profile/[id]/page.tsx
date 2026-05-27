@@ -12,11 +12,18 @@ import { auth } from "@clerk/nextjs/server";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 export async function generateMetadata({
   params,
 }: Omit<URLProps, "searchParams">): Promise<Metadata> {
   const user = await getUserById({ userId: params.id });
+
+  if (!user) {
+    return {
+      title: "Profile Not Found - Forum",
+    };
+  }
 
   return {
     title: `${user.username}'s Profile - Forum`,
@@ -25,7 +32,13 @@ export async function generateMetadata({
 
 const Page = async ({ params, searchParams }: URLProps) => {
   const { userId: clerkId } = auth();
-  const userInfo = await getUserInfo({ userId: params.id });
+  let userInfo;
+
+  try {
+    userInfo = await getUserInfo({ userId: params.id });
+  } catch (error) {
+    return notFound();
+  }
 
   return (
     <>

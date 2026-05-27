@@ -12,6 +12,13 @@ export async function generateMetadata({
 }: Omit<URLProps, "searchParams">): Promise<Metadata> {
   const tag = await getTagById({ tagId: params.id });
 
+  if (!tag) {
+    return {
+      title: "Tag Not Found - Forum",
+      description: "The requested tag could not be found.",
+    };
+  }
+
   return {
     title: `Posts by tag '${tag.name}' - Forum`,
     description: tag.description || `Questions tagged with ${tag.name}`,

@@ -21,6 +21,12 @@ export async function generateMetadata({
 }: Omit<URLProps, "searchParams">): Promise<Metadata> {
   const question = await getQuestionById({ questionId: params.id });
 
+  if (!question) {
+    return {
+      title: "Question Not Found - Forum",
+    };
+  }
+
   return {
     title: `"${question.title}" - Forum`,
   };
