@@ -103,13 +103,13 @@ const Answer = ({
     setIsSubmittingAi(true);
 
     try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/api/openai`,
-        {
-          method: "POST",
-          body: JSON.stringify({ question }),
-        }
-      );
+      const response = await fetch("/api/openai", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ question }),
+      });
 
       const aiAnswer = await response.json();
 
