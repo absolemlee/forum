@@ -73,7 +73,6 @@ forum/
 ├── components/
 ├   ├── cards/
 ├   ├   ├── Answer.tsx
-├   ├   ├── JobWrapper.tsx
 ├   ├   ├── Question.tsx
 ├   ├   └── User.tsx
 ├   ├── forms/
@@ -82,8 +81,6 @@ forum/
 ├   ├   └── Question.tsx
 ├   ├── home/
 ├   ├   └── Filters.tsx
-├   ├── jobs/
-├   ├   └── JobsFilter.tsx
 ├   ├── shared/
 ├   ├   ├── AllAnswers.tsx
 ├   ├   ├── AnswersTab.tsx
