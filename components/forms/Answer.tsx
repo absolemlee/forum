@@ -77,6 +77,13 @@ const Answer = ({
 
         editor.setContent("");
       }
+
+      toast({
+        title: `Answer ${
+          type === "Edit" ? "edited" : "submitted"
+        } successfully 🎉`,
+        variant: "default",
+      });
     } catch (error) {
       toast({
         title: `Error ${type === "Edit" ? "editing" : "submitting"} answer ⚠️`,
@@ -87,13 +94,6 @@ const Answer = ({
       throw error;
     } finally {
       setIsSubmitting(false);
-
-      toast({
-        title: `Answer ${
-          type === "Edit" ? "edited" : "submitted"
-        } successfully 🎉`,
-        variant: "default",
-      });
     }
   }
 
@@ -121,6 +121,11 @@ const Answer = ({
         const editor = editorRef.current as any;
         editor.setContent(formattedAiAnswer);
       }
+
+      toast({
+        title: "AI answer generated successfully 🎉",
+        variant: "default",
+      });
     } catch (error: any) {
       toast({
         title: "Error generating AI answer ⚠️",
@@ -131,11 +136,6 @@ const Answer = ({
       throw error;
     } finally {
       setIsSubmittingAi(false);
-
-      toast({
-        title: "AI answer generated successfully 🎉",
-        variant: "default",
-      });
     }
   };
 
