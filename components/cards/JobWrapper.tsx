@@ -59,7 +59,7 @@ const JobWrapper = ({ job }: { job: Job }) => {
       <div className="flex items-center gap-6">
         {employer_logo ? (
           <Link
-            href={employer_website ?? "/jobs"}
+            href={employer_website ?? "/"}
             className="background-light800_dark400 relative size-16 rounded-xl"
           >
             <Image
@@ -127,7 +127,7 @@ const JobWrapper = ({ job }: { job: Job }) => {
           </div>
 
           <Link
-            href={job_apply_link ?? "/jobs"}
+            href={job_apply_link ?? "/"}
             target="_blank"
             className="flex items-center gap-2"
           >
