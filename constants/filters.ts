@@ -1,5 +1,3 @@
-import { FilterProps } from "@/types";
-
 export const AnswerFilters = [
   { name: "Highest Upvotes", value: "highestUpvotes" },
   { name: "Lowest Upvotes", value: "lowestUpvotes" },
@@ -40,11 +38,4 @@ export const GlobalSearchFilters = [
   { name: "Answer", value: "answer" },
   { name: "User", value: "user" },
   { name: "Tag", value: "tag" },
-];
-
-export const JobPageFilters: FilterProps[] = [
-  { name: "Full-time", value: "fulltime" },
-  { name: "Part-time", value: "parttime" },
-  { name: "Contractor", value: "contractor" },
-  { name: "Internship", value: "intern" },
 ];
